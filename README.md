@@ -12,7 +12,7 @@ install dependencies for gosu :
 install bundler and dependencies :
 
     gem install bundler
-	bundle install --path vendor
+	bundle install --path vendor --without development
 
 Then run the invaderoids.rb file:
 
@@ -23,7 +23,7 @@ __OSX__
 install ruby 1.9. Install bundler and dependencies :
 
     gem install bundler
-	bundle install --path vendor
+	bundle install --path vendor --without development
 
 Then run the invaderoids.rb file:
 
