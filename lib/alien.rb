@@ -7,11 +7,11 @@ class Alien < Engine::Sprite
   BoomOffset = 10
 
   attr_reader :x, :y
-  
+
   # Constructor
   def initialize
     super
-    
+
     @image = Engine::Game.images["alien"]
     @z = ZOrder::Alien
     @radius = 20
@@ -24,15 +24,24 @@ class Alien < Engine::Sprite
   def update
     @x += rand(11) - 5
     @y += rand(11) - 5
-    
+
+
+    if @x < 0 || @x > 640
+      @x = 320
+    end
+
+    if @y < 0 || @y > 480
+      @y = 240
+    end
+
     # animation
     @index = Gosu::milliseconds / AnimTime % @image.size
   end
-  
+
   # Kills the alien with an explosion
   def destroy!
-    (rand(3) + 5).times { Explosion.new(@x + rand(BoomOffset * 2) - BoomOffset, @y + rand(BoomOffset * 2) - BoomOffset) } 
+    (rand(3) + 5).times { Explosion.new(@x + rand(BoomOffset * 2) - BoomOffset, @y + rand(BoomOffset * 2) - BoomOffset) }
     kill!
   end
-  
+
 end

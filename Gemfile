@@ -5,6 +5,7 @@ gem "gosu"
 group :development do
   gem "releasy"
   gem "rake"
-  gem "pry-debugger"
+  gem "pry"
+#  gem "pry-debugger"
 end
 
