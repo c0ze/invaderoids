@@ -160,6 +160,7 @@ module Engine
       @@images["captain"] = Gosu::Image.new(self, "#{GFX_DIR}/captain.png", false)
       @@images["laser"] = Gosu::Image.new(self, "#{GFX_DIR}/laser.png", false)
       @@images["alien"] = Gosu::Image.load_tiles(self, "#{GFX_DIR}/alien.png", 48, 42, false)
+      @@images["heart"] = Gosu::Image.new(self, "#{GFX_DIR}/heart_42.png", false)
       @@images["energy full"] = Gosu::Image.new(self, "#{GFX_DIR}/energy_full.png", false)
       @@images["energy low"] = Gosu::Image.new(self, "#{GFX_DIR}/energy_low.png", false)
       @@images["hud"] = Gosu::Image.new(self, "#{GFX_DIR}/hud.png", false)

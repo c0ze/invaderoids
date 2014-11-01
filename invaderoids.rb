@@ -7,9 +7,10 @@ AUDIO_DIR = ASSETS_DIR + "audio"
 
 LIB_DIR = Pathname.new "./lib"
 
-LIBS = ['engine', 
+LIBS = ['engine',
         'zorder',
         'alien',
+        'heart',
         'bullet',
         'energy_bar',
         'explosion',

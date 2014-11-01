@@ -12,11 +12,13 @@ module Engine
       @game_over = false # flag
 
       # init sprite lists
-      [Alien, Bullet, EnergyBar, Explosion, Hud, Ship].each {|x| Game.sprite_collection.init_list(x)}
+      [Alien, Heart, Bullet, EnergyBar, Explosion, Hud, Ship].each {|x| Game.sprite_collection.init_list(x)}
 
       @captain = Ship.new
       @img_background = Game.images["background"]
       @font_score = Game.fonts["score"]
+
+      @heart = Heart.new
 
       @song = Gosu::Song.new("#{AUDIO_DIR}/civilian.ogg")
       @song.play
