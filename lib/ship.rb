@@ -66,6 +66,13 @@ class Ship < Engine::Sprite
         Engine::Game.game_state.aliens -= 1
       end
     end
+
+    Engine::Game.sprites[Heart].each do |heart|
+      if collision?(heart)
+        heart.destroy!
+        Engine::Game.game_state.full_energy
+      end
+    end
   end
 
   # Shoots a bullet

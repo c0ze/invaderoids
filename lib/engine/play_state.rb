@@ -118,5 +118,9 @@ module Engine
         Game.game_state.start_game_over
       end
     end
+
+    def full_energy
+      @energy = MaxEnergy
+    end
   end
 end
