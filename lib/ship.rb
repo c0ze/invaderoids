@@ -4,7 +4,7 @@ class Ship < Engine::Sprite
   Speed = 6
   BoomOffset = 10
 
-  attr_reader :energy
+  attr_reader :energy, :name
 
   # Constructor
   def initialize
@@ -19,6 +19,7 @@ class Ship < Engine::Sprite
 
     @vel_x = @vel_y = @angle = 0.0
 
+    @name = "A nameless Hero"
     @radius = 30
   end
 

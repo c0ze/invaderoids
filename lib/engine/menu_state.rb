@@ -16,7 +16,7 @@ module Engine
 
       Game::songs["menu_state"].play
 
-      @options = ["New Game", "Credits", "Quit"]
+      @options = ["New Game", "Hall of Fame", "Credits", "Quit"]
       @selected = 0
     end
 
@@ -69,6 +69,7 @@ module Engine
     def select_option
       case @options[@selected]
       when "New Game" then Game.new_game
+      when "Hall of Fame" then Game.game_state = HallOfFameState
       when "Credits" then Game.game_state = CreditsState
       when "Quit" then Game.quit
       end

@@ -86,6 +86,7 @@ module Engine
 
     # Shows the game over message
     def start_game_over
+      Game.scores << { name: @captain.name, score: @score }
       @img_game_over = Game.images["game_over"]
       Game::songs["game_over"].play
 

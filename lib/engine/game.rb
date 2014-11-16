@@ -28,6 +28,7 @@ module Engine
       load_fonts
       load_songs
 
+      @@scores = []
       @@level = 1
 
       @@img_fade = @@images["black"]
@@ -70,6 +71,10 @@ module Engine
     # Returns the sprite collection
     def Game.sprite_collection
       @@sprite_collection
+    end
+
+    def Game.scores
+      @@scores
     end
 
     # Returns the current game state
