@@ -68,7 +68,7 @@ module Engine
     # Executes the current highlighted option
     def select_option
       case @options[@selected]
-      when "New Game" then Game.game_state = LevelBeginState
+      when "New Game" then Game.new_game
       when "Credits" then Game.game_state = CreditsState
       when "Quit" then Game.quit
       end

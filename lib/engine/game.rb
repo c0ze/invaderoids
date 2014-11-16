@@ -79,18 +79,25 @@ module Engine
 
     # Changes to another game state
     def Game.game_state=(st)
-#      binding.pry
-      if ["Engine::LevelBeginState", "Engine::PlayState"].include? st.inspect
-        @@change_game_state = st.new @@level
-      else
-        @@change_game_state = st.new
-      end
+      @@change_game_state = st.new
       Game.fade_off(FadingTime)
     end
 
+    def Game.new_game
+      @@change_game_state = LevelBeginState.new @@level
+      Game.fade_off(FadingTime)
+    end
+
+    def Game.begin_game
+      @@change_game_state = PlayState.new @@level
+      Game.fade_off(FadingTime)
+    end
+
+
     def Game.level_progress
       @@level += 1
-      Game.game_state = LevelBeginState
+      @@change_game_state = LevelBeginState.new @@level
+      Game.fade_off(FadingTime)
     end
 
     # Quits game
