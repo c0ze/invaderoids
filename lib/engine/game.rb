@@ -2,6 +2,7 @@
 require 'singleton'
 require 'pry'
 require 'yaml'
+require 'Kii'
 
 module Engine
   class Game < Gosu::Window
@@ -27,6 +28,7 @@ module Engine
       load_sounds
       load_fonts
       load_songs
+      initialize_kii
 
       @@scores = []
       @@level = 1
@@ -39,6 +41,20 @@ module Engine
 
       @@change_game_state = nil
       @@game_state = MenuState.new
+    end
+
+    def initialize_kii
+      @@cloud = KiiApp.new
+      @@cloud.get_admin_token
+    end
+
+    def Game.submit_score(score)
+      @@scores << score
+      @@cloud.buckets("high_scores").new_object(score).create
+    end
+
+    def Game.cloud
+      @@cloud
     end
 
     def Game.level
