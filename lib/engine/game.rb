@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 require 'singleton'
 require 'pry'
+require 'yaml'
 
 module Engine
   class Game < Gosu::Window
@@ -16,13 +17,16 @@ module Engine
     def initialize
       super(ScreenWidth, ScreenHeight, false)
       self.caption = "Invaderoids"
+      @@assets = ::YAML.load_file(ASSETS_DIR+'manifest.yml')["assets"]
       @@sprite_collection = SpriteCollection.new
       @@images = Hash.new
       @@sounds = Hash.new
       @@fonts = Hash.new
+      @@songs = Hash.new
       load_images
       load_sounds
       load_fonts
+      load_songs
 
       @@level = 1
 
@@ -52,6 +56,10 @@ module Engine
     # Returns a hash map with the fonts collection
     def Game.fonts
       @@fonts
+    end
+
+    def Game.songs
+      @@songs
     end
 
     # Returns a hash map with the sprite lists
@@ -155,35 +163,41 @@ module Engine
 
     # Loads all the images and stores them into the images hash map
     def load_images
-      @@images["black"] = Gosu::Image.new(self, "#{GFX_DIR}/black.png", true)
-      @@images["background"] = Gosu::Image.new(self, "#{GFX_DIR}/background.png", true)
-      @@images["captain"] = Gosu::Image.new(self, "#{GFX_DIR}/captain.png", false)
-      @@images["laser"] = Gosu::Image.new(self, "#{GFX_DIR}/laser.png", false)
+      @@assets["images"].each do |asset|
+        name = asset["name"]
+        file_name = asset["file_name"] || "#{name}.png"
+        tileable = asset["tileable"] || false
+
+        @@images[name] = Gosu::Image.new(self, "#{GFX_DIR}/#{file_name}", tileable)
+      end
       @@images["alien"] = Gosu::Image.load_tiles(self, "#{GFX_DIR}/alien.png", 48, 42, false)
-      @@images["heart"] = Gosu::Image.new(self, "#{GFX_DIR}/heart_42.png", false)
-      @@images["energy full"] = Gosu::Image.new(self, "#{GFX_DIR}/energy_full.png", false)
-      @@images["energy low"] = Gosu::Image.new(self, "#{GFX_DIR}/energy_low.png", false)
-      @@images["hud"] = Gosu::Image.new(self, "#{GFX_DIR}/hud.png", false)
-      @@images["boom"] = Gosu::Image.new(self, "#{GFX_DIR}/boom.png", false)
-      @@images["gameover"] = Gosu::Image.new(self, "#{GFX_DIR}/game_over.png", false)
-      @@images["logo"] = Gosu::Image.new(self, "#{GFX_DIR}/game_logo.png", false)
-      @@images["credits"] = Gosu::Image.new(self, "#{GFX_DIR}/credits.png", false)
     end
 
     # Loads all the images and stores them into the images hash map
     def load_sounds
-      @@sounds["laser"] = Gosu::Sample.new(self, "#{AUDIO_DIR}/laser.ogg")
-      @@sounds["explosion"] = Gosu::Sample.new(self, "#{AUDIO_DIR}/explosion.ogg")
+      @@assets["sounds"].each do |asset|
+        name = asset["name"]
+        file_name = asset["file_name"] || "#{name}.ogg"
+        @@sounds[name] = Gosu::Sample.new(self, "#{AUDIO_DIR}/#{file_name}")
+      end
     end
 
     # Loads all fonts needed and stores them into the fonts hash map
     def load_fonts
-      @@fonts["menu"] = Gosu::Font.new(self, "Courier", 40)
-      @@fonts["score"] = Gosu::Font.new(self, "Courier", 50)
-      @@fonts["small"] = Gosu::Font.new(self, "Courier", 30)
-      @@fonts["logo"] = Gosu::Font.new(self, ASSETS_DIR + "star_hollow.ttf", 30)
+      @@assets["fonts"].each do |asset|
+        name = asset["name"]
+        size = asset["size"] || 30
+        file_name = asset["file_name"] ? "#{ASSETS_DIR}/#{asset["file_name"]}" : "Courier"
+        @@fonts[name] = Gosu::Font.new(self, file_name, size)
+      end
     end
 
+    def load_songs
+      @@assets["songs"].each do |asset|
+        state = asset["state"]
+        file_name = asset["file_name"]
+        @@songs[state] = Gosu::Song.new("#{AUDIO_DIR}/#{file_name}")
+      end
+    end
   end
-
 end

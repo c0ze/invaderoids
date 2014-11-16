@@ -1,0 +1,38 @@
+assets:
+  images:
+    - name: "black"
+      tileable: true
+    - name: "background"
+      tileable: true
+    - name: "captain"
+    - name: "laser"
+    - name: "heart"
+      file_name: "heart_42.png"
+    - name: "energy_full"
+    - name: "energy_low"
+    - name: "hud"
+    - name: "boom"
+    - name: "game_over"
+    - name: "logo"
+      file_name: "game_logo.png"
+    - name: "credits"
+  sounds:
+    - name: "laser"
+    - name: "explosion"
+  fonts:
+    - name: "menu"
+      size: 40
+    - name: "score"
+      size: 50
+    - name: "small"
+      size: 30
+    - name: "logo"
+      size: 30
+      file_name: "star_hollow.ttf"
+  songs:
+    - state: "play_state"
+      file_name: "civilian.ogg"
+    - state: "menu_state"
+      file_name: "melonia.ogg"
+    - state: "game_over"
+      file_name: "gameover.ogg"

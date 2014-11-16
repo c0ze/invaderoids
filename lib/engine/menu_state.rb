@@ -13,8 +13,8 @@ module Engine
 
 
       @font = Game::fonts["menu"]
-      @song = Gosu::Song.new("#{AUDIO_DIR}/melonia.ogg")
-      @song.play
+
+      Game::songs["menu_state"].play
 
       @options = ["New Game", "Credits", "Quit"]
       @selected = 0

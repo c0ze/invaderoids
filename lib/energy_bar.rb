@@ -6,8 +6,8 @@ class EnergyBar < Engine::Sprite
   def initialize
     super
 
-    @image = Engine::Game.images["energy low"]
-    @image_full = Engine::Game.images["energy full"]
+    @image = Engine::Game.images["energy_low"]
+    @image_full = Engine::Game.images["energy_full"]
 
     @x = 50
     @y = Engine::Game::ScreenHeight - @image.height / 2 - 12
