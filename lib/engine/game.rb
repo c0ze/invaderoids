@@ -127,8 +127,6 @@ module Engine
 
     # Updates the game logic. Gets called automatically by Gosu each frame
     def update
-      @@game_state.update unless Game.fading?
-
       # update fading
       Game.end_fade! if Gosu::milliseconds >= @@end_fade and Game.fading?
 
@@ -138,6 +136,9 @@ module Engine
         @@change_game_state = nil
         Game.fade_on(FadingTime)
       end
+
+      return unless defined? @@game_state.update
+      @@game_state.update unless Game.fading?
     end
 
     # Draws the game entities on the screen. Gets called automatically by Gosu each frame
@@ -153,12 +154,12 @@ module Engine
 
     # Gets called automatically by Gosu when a button is released
     def button_up(id)
-      @@game_state.button_up(id)
+      @@game_state.button_up(id) if defined? @@game_state.button_up
     end
 
     # Gets called automatically by Gosu when a button is pressed
     def button_down(id)
-      @@game_state.button_down(id)
+      @@game_state.button_down(id) if defined? @@game_state.button_down
     end
 
     # Loads all the images and stores them into the images hash map

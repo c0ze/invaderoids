@@ -1,6 +1,6 @@
 module Engine
   # This game state is the main menu screen
-  class MenuState < GameState
+  class MenuState
 
     TextX = Game::ScreenWidth / 2
     TextY = (2 * Game::ScreenHeight) / 3
@@ -18,10 +18,6 @@ module Engine
 
       @options = ["New Game", "Credits", "Quit"]
       @selected = 0
-    end
-
-    # Updates the main menu screen elements
-    def update
     end
 
     # Draws the main menu screen elements

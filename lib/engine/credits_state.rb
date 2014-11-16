@@ -2,7 +2,7 @@
 
 module Engine
   # This game state is the Credits screen
-  class CreditsState < GameState
+  class CreditsState
     # Constructor
     def initialize
       @img_background = Game.images["background"]

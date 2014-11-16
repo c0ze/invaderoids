@@ -2,7 +2,7 @@
 
 module Engine
   # This game state is the screen which shows up level
-  class LevelBeginState < GameState
+  class LevelBeginState
     # Constructor
     def initialize level
       @img_background = Game.images["background"]

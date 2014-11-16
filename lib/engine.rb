@@ -1,5 +1,4 @@
 require_relative 'engine/game.rb'
-require_relative 'engine/game_state.rb'
 
 require_relative 'engine/credits_state.rb'
 require_relative 'engine/menu_state.rb'

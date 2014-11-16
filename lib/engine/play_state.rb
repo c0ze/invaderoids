@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 module Engine
-  class PlayState < GameState
+  class PlayState
     attr_reader :energy, :score
     attr_accessor :aliens
 
