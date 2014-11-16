@@ -52,8 +52,6 @@ module Engine
       # spawn enemies
       spawn if !max_aliens_spawned
 
-      puts "aliens : #{@aliens} spawned : #{@spawned}"
-
       # update all sprites
       Game.sprite_collection.update
     end
