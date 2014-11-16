@@ -84,19 +84,20 @@ module Engine
     end
 
     def Game.new_game
+      @@level = 1
       @@change_game_state = LevelBeginState.new @@level
       Game.fade_off(FadingTime)
     end
 
-    def Game.begin_game
-      @@change_game_state = PlayState.new @@level
+    def Game.begin_game(score)
+      @@change_game_state = PlayState.new @@level, score
       Game.fade_off(FadingTime)
     end
 
 
-    def Game.level_progress
+    def Game.level_progress(score)
       @@level += 1
-      @@change_game_state = LevelBeginState.new @@level
+      @@change_game_state = LevelBeginState.new @@level, score
       Game.fade_off(FadingTime)
     end
 

@@ -4,7 +4,7 @@ module Engine
   # This game state is the screen which shows up level
   class LevelBeginState
     # Constructor
-    def initialize level
+    def initialize(level, score = 0)
       @img_background = Game.images["background"]
       @img_gosu = Game.images["gosu"]
 
@@ -13,6 +13,7 @@ module Engine
 
       @logo_font = Game::fonts["logo"]
       @level = level
+      @score = score
     end
 
     # Draws the level screen
@@ -26,7 +27,7 @@ module Engine
 
     # Gets called when the player releases a button
     def button_up(id)
-      Game.begin_game if id == Gosu::KbEscape or id == Gosu::KbReturn or Gosu::KbSpace
+      Game.begin_game(@score) if id == Gosu::KbEscape or id == Gosu::KbReturn or Gosu::KbSpace
     end
   end
 end

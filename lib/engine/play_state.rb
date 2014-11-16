@@ -7,7 +7,7 @@ module Engine
     MaxEnergy = 5
 
     # Constructor
-    def initialize level
+    def initialize(level, score = 0)
       @level = level
       @game_over = false # flag
 
@@ -25,7 +25,7 @@ module Engine
       Hud.new
       EnergyBar.new
 
-      @score = 0
+      @score = score
       @spawned = 0
       @aliens = 0
       @energy = MaxEnergy
@@ -102,7 +102,7 @@ module Engine
       @score += x
       @aliens -= 1
       if max_aliens_spawned and @aliens == 0
-        Game.level_progress
+        Game.level_progress @score
       end
     end
 
