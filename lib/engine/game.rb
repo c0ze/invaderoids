@@ -49,12 +49,15 @@ module Engine
     end
 
     def Game.submit_score(score)
-      @@scores << score
-      @@cloud.buckets("high_scores").new_object(score).create
+      refresh_scores
+      if @@scores.count < 8 or @@scores.last['score'] < score['score']
+        @@cloud.buckets("high_scores").new_object(score).create
+      end
     end
 
-    def Game.cloud
-      @@cloud
+    def Game.refresh_scores
+      scores = JSON.parse @@cloud.buckets("high_scores").get_objects
+      @@scores = scores['results'].sort_by { |record| record['score'] }.reverse.first(8)
     end
 
     def Game.level

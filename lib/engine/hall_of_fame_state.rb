@@ -12,6 +12,7 @@ module Engine
       @font_credits = Game.fonts["menu"]
 
       @logo_font = Game::fonts["logo"]
+      Game.refresh_scores
       @scores = Game.scores
     end
 
@@ -22,7 +23,7 @@ module Engine
       color = 0xfff4cc00
       y = 120
       @scores.each do |score|
-        @logo_font.draw_rel("#{score[:name]}.....#{score[:score]}", Game::ScreenWidth / 2, y, ZOrder::Hud, 0.5, 0.5, 2, 2, color)
+        @logo_font.draw_rel("#{score['name']}.....#{score['score']}", Game::ScreenWidth / 2, y, ZOrder::Hud, 0.5, 0.5, 2, 2, color)
         y += 40
       end
     end
