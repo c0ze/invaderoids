@@ -6,3 +6,4 @@ app_name: 'Invaderoids'
 mail_address: 'some_address@email.com'
 description: ''
 country: 'jp'
+debug: false
